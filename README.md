@@ -1,6 +1,6 @@
-# Face Mask Detection: CNN + OpenCV (MaskCNN_v2)
+# Face Mask Detection: CNN + OpenCV
 
-A real-time face mask detector built from scratch. A custom convolutional neural network (**MaskCNN_v2**, ~316K parameters) classifies a face as **`with_mask`** or **`without_mask`**. It is paired with OpenCV's DNN SSD face detector so it can run live on a webcam or a video file.
+A real-time face mask detector built from scratch. A custom convolutional neural network (~316K parameters) classifies a face as **`with_mask`** or **`without_mask`**. It is paired with OpenCV's DNN SSD face detector so it can run live on a webcam or a video file.
 
 > Course project for **GEL521 – Machine-Learning Control** (Project 5 – OpenCV Mask Detection), Spring 2025-26.
 
