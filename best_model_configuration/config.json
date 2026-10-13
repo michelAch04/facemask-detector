@@ -1,0 +1,113 @@
+{
+  "model_name": "MaskCNN_v2",
+  "version": "2.0.0",
+  "created_at": "2026-05-02 16:36:48",
+  "architecture": {
+    "input_shape": [
+      128,
+      128,
+      3
+    ],
+    "conv_blocks": 3,
+    "residual_skips": "Blocks 2 and 3",
+    "spatial_dropout": true,
+    "global_avg_pool": true,
+    "batch_normalization": true,
+    "total_params": 315793,
+    "winning_hyperparameters": {
+      "filters_1": 16,
+      "filters_2": 64,
+      "filters_3": 128,
+      "filters_4": 256,
+      "dense_units": 256,
+      "dropout_1": 0.25,
+      "dropout_2": 0.6,
+      "learning_rate": 0.001,
+      "l2_reg": 0.0001,
+      "use_block4": false,
+      "label_smoothing": 0.1
+    }
+  },
+  "training": {
+    "optimizer": "Adam + WarmupCosineSchedule",
+    "loss": "BinaryCrossentropy(label_smoothing=0.1)",
+    "epochs_configured": 30,
+    "epochs_run": 30,
+    "best_epoch": 25,
+    "batch_size": 64,
+    "mixed_precision": "float16",
+    "class_weights": {
+      "0": 1.0133945656333716,
+      "1": 0.9869549012299664
+    },
+    "early_stopping_patience": 8,
+    "warmup_epochs": 5,
+    "hyperband_search": {
+      "completed": true,
+      "best_val_accuracy": 0.97,
+      "trials_run": 38,
+      "search_time_minutes": 84
+    }
+  },
+  "augmentation": {
+    "pipeline": "tf.data + tf.image (GPU-accelerated)",
+    "applied_to": "train split only",
+    "transforms": [
+      "random_flip_left_right",
+      "random_brightness",
+      "random_contrast",
+      "random_zoom_crop",
+      "random_rotation"
+    ]
+  },
+  "dataset": {
+    "structure": "pre-split train/val/test",
+    "train_images": 5296,
+    "val_images": 1134,
+    "test_images": 728,
+    "classes": [
+      "with_mask",
+      "without_mask"
+    ]
+  },
+  "val_metrics": {
+    "accuracy": 0.9770723104056437,
+    "precision": 0.9823943661971831,
+    "recall": 0.9721254355400697,
+    "f1_score": 0.9772329246935202,
+    "roc_auc": 0.9962885764061722,
+    "note": "Slight optimistic bias from checkpoint selection"
+  },
+  "test_metrics": {
+    "accuracy": 0.9642857142857143,
+    "precision": 0.9028571428571428,
+    "recall": 0.9461077844311377,
+    "f1_score": 0.9239766081871345,
+    "roc_auc": 0.9939052376530362,
+    "threshold_used": 0.5000000000000001,
+    "tp": 158,
+    "tn": 544,
+    "fp": 17,
+    "fn": 9
+  },
+  "inference": {
+    "classes": [
+      "with_mask",
+      "without_mask"
+    ],
+    "class_map": {
+      "0": "with_mask",
+      "1": "without_mask"
+    },
+    "decision_threshold": 0.5000000000000001,
+    "input_size": [
+      128,
+      128
+    ]
+  },
+  "files": {
+    "model": "/content/mask_cnn_final.keras",
+    "best_weights": "/content/best_mask_cnn.weights.h5",
+    "training_log": "/content/training_log.csv"
+  }
+}
