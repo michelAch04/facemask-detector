@@ -162,7 +162,7 @@ The threshold sweep on the validation set confirmed **0.5** as the F1-optimal de
 
 1. Clone the repository:
    ```bash
-   git clone <this-repo-url>
+   git clone (https://github.com/michelAch04/facemask-detector).git
    cd binary_class_model
    ```
 2. Install dependencies (Python 3.10+ recommended):
